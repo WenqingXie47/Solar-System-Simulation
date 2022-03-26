@@ -1,5 +1,5 @@
-#ifndef nbsimMyFunctions_h
-#define nbsimMyFunctions_h
+#ifndef nbsimParticle_h
+#define nbsimParticle_h
 #include <Eigen/Dense>
 
 namespace nbsim {
@@ -17,8 +17,8 @@ public:
 
     void integrateTimestep(const Eigen::Vector3d& acceleration, const double timestep); 
 private:
-    Eigen::Vector3d x;
-    Eigen::Vector3d v;
+    Eigen::Vector3d position;
+    Eigen::Vector3d velocity;
 };
 
 } // end namespace nbsim

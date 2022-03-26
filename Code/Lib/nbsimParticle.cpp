@@ -4,7 +4,7 @@ namespace nbsim
 {
 
 Particle::Particle(const Eigen::Vector3d& position, const Eigen::Vector3d& velocity)
-    : x{position}, v{velocity}
+    : position{position}, velocity{velocity}
 {}
 
 Particle::~Particle()
@@ -12,18 +12,18 @@ Particle::~Particle()
 
 Eigen::Vector3d Particle::getPosition() const
 {
-    return x;
+    return position;
 }
 
 Eigen::Vector3d Particle::getVelocity() const
 {
-    return v;
+    return velocity;
 }
 
 void Particle::integrateTimestep(const Eigen::Vector3d& acceleration, const double timestep)
 {
-    x += v*timestep;
-    v += acceleration*timestep;
+    position += velocity*timestep;
+    velocity += acceleration*timestep;
 }   
 
 

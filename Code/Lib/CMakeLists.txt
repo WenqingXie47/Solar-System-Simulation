@@ -19,11 +19,13 @@ set(PHAS0100ASSIGNMENT2_LIBRARY_SRCS
   nbsimMyFunctions.cpp
   nbsimException.cpp
   nbsimParticle.cpp
+  nbsimMassiveParticle.cpp
 )
 
 set(PHAS0100ASSIGNMENT2_LIBRARY_HDRS
   nbsimExceptionMacro.h
   nbsimSolarSystemData.ipp
+  nbsimParticle.h
 )
 
 add_library(${PHAS0100ASSIGNMENT2_LIBRARY_NAME} ${PHAS0100ASSIGNMENT2_LIBRARY_HDRS} ${PHAS0100ASSIGNMENT2_LIBRARY_SRCS})
