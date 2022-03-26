@@ -11,8 +11,8 @@ class MassiveParticle : public Particle
 public:
     MassiveParticle(double mu, const Eigen::Vector3d& position, const Eigen::Vector3d& velocity);
     double getMu() const;
-    void addAttractor(const MassiveParticle* attractor);
-    void removeAttractor(const MassiveParticle* attractor);
+    void addAttractor(const MassiveParticle& attractor);
+    void removeAttractor(const MassiveParticle& attractor);
     void calculateAcceleration();
     void integrateTimestep(const double timestep);
 

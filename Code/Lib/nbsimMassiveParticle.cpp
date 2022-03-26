@@ -1,6 +1,7 @@
 #include "nbsimMassiveParticle.h"
 #include <cmath>
 
+
 namespace nbsim
 {
 
@@ -13,14 +14,14 @@ double MassiveParticle::getMu() const
     return mu;
 }
 
-void MassiveParticle::addAttractor(const MassiveParticle* attractor)
+void MassiveParticle::addAttractor(const MassiveParticle& attractor)
 {
-    attractors.insert(attractor);
+    attractors.insert(&attractor);
 }
 
-void MassiveParticle::removeAttractor(const MassiveParticle* attractor)
+void MassiveParticle::removeAttractor(const MassiveParticle& attractor)
 {
-    attractors.erase(attractor);
+    attractors.erase(&attractor);
 }
 
 void MassiveParticle::calculateAcceleration()
@@ -40,7 +41,7 @@ Eigen::Vector3d MassiveParticle::calculateAcceleration
 {
     double r_square = relativePosition.dot(relativePosition);
     Eigen::Vector3d r_normalized = relativePosition/sqrt(r_square);
-    return -r_normalized*mu/r_square;
+    return r_normalized*mu/r_square;
 }
 
 void MassiveParticle::integrateTimestep(const double timestep)
