@@ -20,6 +20,7 @@ set(PHAS0100ASSIGNMENT2_LIBRARY_SRCS
   nbsimException.cpp
   nbsimParticle.cpp
   nbsimMassiveParticle.cpp
+  nbsimSimulator.cpp
 )
 
 set(PHAS0100ASSIGNMENT2_LIBRARY_HDRS

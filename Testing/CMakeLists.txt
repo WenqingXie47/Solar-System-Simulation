@@ -20,6 +20,7 @@ set(TEST_CASES
   nbsimCommandLineArgsTest
   nbsimParticleTest
   nbsimMassiveParticleTest
+  nbsimSimulatorTest
 )
 
 foreach(_test_case ${TEST_CASES})
@@ -38,3 +39,5 @@ add_test(NoArgs ${EXECUTABLE_OUTPUT_PATH}/nbsimBasicTest)
 add_test(1File ${EXECUTABLE_OUTPUT_PATH}/nbsimCommandLineArgsTest ${DATA_DIR}/input.txt)
 add_test(Particle ${EXECUTABLE_OUTPUT_PATH}/nbsimParticleTest)
 add_test(MassiveParticle ${EXECUTABLE_OUTPUT_PATH}/nbsimMassiveParticleTest)
+add_test(Simulator ${EXECUTABLE_OUTPUT_PATH}/nbsimSimulatorTest)
+

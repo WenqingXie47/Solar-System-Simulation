@@ -14,15 +14,14 @@ public:
     void addAttractor(const MassiveParticle& attractor);
     void removeAttractor(const MassiveParticle& attractor);
     void calculateAcceleration();
-    void integrateTimestep(const double timestep);
+    void integrateTimestep(double timestep);
 
 private:
     double mu;  // mu = G*m,  G is gravitational constant and m is mass
     Eigen::Vector3d acceleration;
     std::set<const MassiveParticle*>  attractors;
 
-    Eigen::Vector3d calculateAcceleration
-        (double mu,const Eigen::Vector3d& relativePosition) const;
+    Eigen::Vector3d calculateAcceleration(const MassiveParticle& attractor);
 };
 
 
