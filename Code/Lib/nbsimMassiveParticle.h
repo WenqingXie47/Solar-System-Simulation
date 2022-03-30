@@ -16,6 +16,12 @@ public:
     void calculateAcceleration();
     void integrateTimestep(double timestep);
 
+    // calculate energy
+    double calculateKineticEnergy() const;
+    double calculatePotentialEnergy() const;
+    double calculateTotalEnergy() const;
+
+
 private:
     double mu;  // mu = G*m,  G is gravitational constant and m is mass
     Eigen::Vector3d acceleration;

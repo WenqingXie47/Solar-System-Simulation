@@ -63,12 +63,51 @@ void Simulator::simulate(int nSteps)
     }
 }
 
+
+double Simulator::calculateKineticEnergy() const
+{
+    double kineticEnergy = 0;
+    for(const MassiveParticle& planet: planets){
+        kineticEnergy += planet.calculateKineticEnergy();
+    }
+    return kineticEnergy;
+}
+
+double Simulator::calculatePotentialEnergy() const
+{
+    double potentialEnergy = 0;
+    for(const MassiveParticle& planet: planets){
+        potentialEnergy += planet.calculatePotentialEnergy();
+    }
+    return potentialEnergy;
+}
+double Simulator::calculateTotalEnergy() const
+{
+    return calculateKineticEnergy()+ calculatePotentialEnergy();
+}
+
+
 void Simulator::printPlanets() const
 {
     for (const auto& planet :planets){
-        planet.printInfo();
+        planet.printStatus();
     }
-    std::cout<< std::endl;
 }
 
+void Simulator::printEnergy() const
+{
+    double kineticEnergy = calculateKineticEnergy();
+    double potentialEnergy = calculatePotentialEnergy();
+    double totalEnergy = kineticEnergy+potentialEnergy;
+    std::cout<< "Kinetic energy: " << kineticEnergy << "\t"
+        << "Potential energy: " << potentialEnergy << "\t"
+        << "Total energy: " << totalEnergy << "\n";
+}
+
+void Simulator::printStatus() const
+{
+    printPlanets();
+    printEnergy();
+    std::cout << std::endl;
+}
 } // end namespace nbsim

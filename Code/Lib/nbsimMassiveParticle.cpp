@@ -67,4 +67,27 @@ void MassiveParticle::integrateTimestep(double timestep)
    Particle::integrateTimestep(acceleration,timestep);
 }
 
+
+double MassiveParticle::calculateKineticEnergy() const
+{
+    double v_square = getVelocity().dot(getVelocity());
+    return mu*v_square/2;
+}
+
+double MassiveParticle::calculatePotentialEnergy() const
+{
+    double potentialEnergy =0;
+    for(auto attractor : attractors){
+        Eigen::Vector3d relativePosition = attractor->getPosition() - (this->getPosition());
+        double r = sqrt(relativePosition.dot(relativePosition));
+        potentialEnergy -= attractor->getMu()*mu/(2*r);
+    }
+    return potentialEnergy;
+}
+
+double MassiveParticle::calculateTotalEnergy() const
+{
+    return calculateKineticEnergy()+calculatePotentialEnergy();
+}
+
 } // end namespace nbsim

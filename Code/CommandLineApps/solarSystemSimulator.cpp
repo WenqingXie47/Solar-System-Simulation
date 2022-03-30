@@ -65,8 +65,10 @@ std::vector<nbsim::MassiveParticle> preparData()
 void simulate(double timestep, int nSteps)
 {
     nbsim::Simulator simulator{preparData(),timestep};
-    simulator.printPlanets();
+    std::cout<< "Initial condition:" << std::endl;
+    simulator.printStatus();
     simulator.simulate(nSteps);
-    simulator.printPlanets();
+    std::cout<< "Final status:" << std::endl;
+    simulator.printStatus();
 }
 

@@ -47,7 +47,7 @@ void Particle::integrateTimestep(const Eigen::Vector3d& acceleration, const doub
     velocity += acceleration*timestep;
 }   
 
-void Particle::printInfo() const
+void Particle::printStatus() const
 {
     std::cout<< "Name: " << name << "\t"
         << "position: (" << position.transpose() << ")\t"

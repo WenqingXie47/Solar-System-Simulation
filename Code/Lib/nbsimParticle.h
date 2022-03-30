@@ -22,7 +22,7 @@ public:
     void setName(std::string particleName);
 
     void integrateTimestep(const Eigen::Vector3d& acceleration, const double timestep); 
-    void printInfo() const;
+    void printStatus() const;
 private:
     Eigen::Vector3d position;
     Eigen::Vector3d velocity;
