@@ -1,11 +1,12 @@
 
 #include "CLI11.hpp"
 #include "nbsimSimulator.h"
+#include "nbsimInitialConditionReader.h"
 #include "nbsimSolarSystemData.ipp"
 #include <iostream>
 #include <vector>
 
-std::vector<nbsim::MassiveParticle> preparData();
+
 void simulate(double timestep, int nSteps);
 
 int main(int argc, char **argv) {
@@ -37,6 +38,11 @@ int main(int argc, char **argv) {
         return 0;
     }
 
+    // if(nSteps<=0){
+    //     std::cerr << "The number of steps should be positive integer." << std::end;
+    //     return 1;
+    // }
+    // if()
     if(nSteps > 0){
         simulate(timestep,  nSteps);
         return 0;
@@ -47,24 +53,13 @@ int main(int argc, char **argv) {
 }
 
 
-std::vector<nbsim::MassiveParticle> preparData()
-{
-    std::vector<nbsim::MassiveParticle> data;
-    for(const nbsim::Planet& planet : nbsim::solarSystemData){
-        nbsim::MassiveParticle massivePlanet{
-            planet.mu,
-            planet.position,
-            planet.velocity
-        };
-        massivePlanet.setName(planet.name);
-        data.push_back(massivePlanet);
-    }
-    return data;
-}
 
 void simulate(double timestep, int nSteps)
 {
-    nbsim::Simulator simulator{preparData(),timestep};
+    auto initialCondition = nbsim::InitialConditionReader::readInitialCondition(
+        nbsim::solarSystemData
+    );
+    nbsim::Simulator simulator{initialCondition,timestep};
     std::cout<< "Initial condition:" << std::endl;
     simulator.printStatus();
     simulator.simulate(nSteps);

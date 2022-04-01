@@ -1,6 +1,6 @@
 #include "catch.hpp"
 #include "nbsimCatchMain.h"
-#include "nbsimSolarDataGenerator.h"
+#include "nbsimStableConditionGenerator.h"
 
 
 void printVector(std::vector<nbsim::MassiveParticle> vec)
@@ -11,7 +11,8 @@ void printVector(std::vector<nbsim::MassiveParticle> vec)
 }
 
 TEST_CASE( "Generation", "[Generation]" ) {
-    nbsim::SolarDataGenerator generator{};
-    auto v = generator.generateData(20);
-    printVector(v);
+    nbsim::StableConditionGenerator generator{};
+    auto planets= generator.generateInitialCondition(10);
+
+    
 }

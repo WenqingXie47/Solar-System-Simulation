@@ -12,7 +12,7 @@ TEST_CASE( "No acceleration", "[No acceleration]" ) {
     Eigen::Vector3d velocity(1,0,0);
 
     const double timestep = 0.001;
-    double precision = 0.01;
+    const double precision = 0.01;
     nbsim::MassiveParticle earth{mu,position,velocity};
     for (int n=0; n<100000; n++){
         double time = timestep*n;
@@ -38,7 +38,7 @@ TEST_CASE( "Two body", "[Two body]" ) {
 
     const double timestep = 0.0001;
     int nSteps = (int) (4*M_PI/timestep);
-    double precision = 0.1;
+    const double precision = 0.1;
     for (int n=0; n<nSteps; n++){
         double time = timestep*n;
 

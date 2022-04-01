@@ -21,7 +21,8 @@ set(TEST_CASES
   nbsimParticleTest
   nbsimMassiveParticleTest
   nbsimSimulatorTest
-  nbsimSolarDataGeneratorTest
+  nbsimStableConditionGeneratorTest
+  nbsimInitialConditionReaderTest
 )
 
 foreach(_test_case ${TEST_CASES})
@@ -41,5 +42,6 @@ add_test(1File ${EXECUTABLE_OUTPUT_PATH}/nbsimCommandLineArgsTest ${DATA_DIR}/in
 add_test(Particle ${EXECUTABLE_OUTPUT_PATH}/nbsimParticleTest)
 add_test(MassiveParticle ${EXECUTABLE_OUTPUT_PATH}/nbsimMassiveParticleTest)
 add_test(Simulator ${EXECUTABLE_OUTPUT_PATH}/nbsimSimulatorTest)
-add_test(SolarDataGenerator ${EXECUTABLE_OUTPUT_PATH}/nbsimSolarDataGeneratorTest)
+add_test(StableConditionGenerator ${EXECUTABLE_OUTPUT_PATH}/nbsimStableConditionGeneratorTest)
+add_test(InitialConditionReader ${EXECUTABLE_OUTPUT_PATH}/nbsimInitialConditionReaderTest)
 
