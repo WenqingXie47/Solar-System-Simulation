@@ -2,8 +2,8 @@
 #include "nbsimCatchMain.h"
 #include "nbsimSimulator.h"
 #include "nbsimSolarSystemData.ipp"
+#include "nbsimInitialConditionReader.h"
 
-std::vector<nbsim::MassiveParticle> readSolarSystemData();
 
 
 TEST_CASE( "Two body", "[Two body]" ) {
@@ -34,7 +34,10 @@ TEST_CASE( "Two body", "[Two body]" ) {
 
 TEST_CASE( "Solar System", "[Solar System]" ) {
     double timestep = 0.000274;
-    nbsim::Simulator simulator{readSolarSystemData(),timestep};
+    auto initialCondition = nbsim::InitialConditionReader::readInitialCondition(
+        nbsim::solarSystemData
+    );
+    nbsim::Simulator simulator{initialCondition,timestep};
 
     double initialEnergy = simulator.calculateTotalEnergy();
     int steps = 3650;
@@ -46,17 +49,4 @@ TEST_CASE( "Solar System", "[Solar System]" ) {
 }
 
 
-std::vector<nbsim::MassiveParticle> readSolarSystemData()
-{
-    std::vector<nbsim::MassiveParticle> data;
-    for(const nbsim::Planet& planet : nbsim::solarSystemData){
-        nbsim::MassiveParticle massivePlanet{
-            planet.mu,
-            planet.position,
-            planet.velocity
-        };
-        massivePlanet.setName(planet.name);
-        data.push_back(massivePlanet);
-    }
-    return data;
-}
+ 
