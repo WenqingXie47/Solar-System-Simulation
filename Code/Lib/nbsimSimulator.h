@@ -21,12 +21,17 @@ public:
 
     // simulation
     void takeStep();
+    void takeStep_openMP();
     void simulate(int nSteps);
+    void simulate_openMP(int nSteps);
 
     // calculate energy
     double calculateKineticEnergy() const;
+    double calculateKineticEnergy_openMP() const;
     double calculatePotentialEnergy() const;
+    double calculatePotentialEnergy_openMP() const;
     double calculateTotalEnergy() const;
+    double calculateTotalEnergy_openMP() const;
 
     // printing
     void printPlanets() const;

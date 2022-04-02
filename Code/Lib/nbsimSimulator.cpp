@@ -51,10 +51,25 @@ void Simulator::takeStep()
     for(MassiveParticle& planet : planets){
         planet.calculateAcceleration();
     }
+
     for(MassiveParticle& planet : planets){
         planet.integrateTimestep(timestep);
     }
 }
+
+void Simulator::takeStep_openMP()
+{
+    #pragma omp parallel for
+    for(MassiveParticle& planet : planets){
+        planet.calculateAcceleration();
+    }
+    #pragma omp barrier
+    #pragma omp parallel for
+    for(MassiveParticle& planet : planets){
+        planet.integrateTimestep(timestep);
+    }
+}
+
 
 void Simulator::simulate(int nSteps)
 {
@@ -63,10 +78,27 @@ void Simulator::simulate(int nSteps)
     }
 }
 
+void Simulator::simulate_openMP(int nSteps)
+{
+    for (int i=0; i<nSteps;i++){
+        takeStep_openMP();
+    }
+}
+
 
 double Simulator::calculateKineticEnergy() const
 {
     double kineticEnergy = 0;
+    for(const MassiveParticle& planet: planets){
+        kineticEnergy += planet.calculateKineticEnergy();
+    }
+    return kineticEnergy;
+}
+
+double Simulator::calculateKineticEnergy_openMP() const
+{
+    double kineticEnergy = 0;
+    #pragma omp parallel for reduction(+: kineticEnergy)
     for(const MassiveParticle& planet: planets){
         kineticEnergy += planet.calculateKineticEnergy();
     }
@@ -81,9 +113,25 @@ double Simulator::calculatePotentialEnergy() const
     }
     return potentialEnergy;
 }
+
+double Simulator::calculatePotentialEnergy_openMP() const
+{
+    double potentialEnergy = 0;
+    #pragma omp parallel for reduction(+: potentialEnergy)
+    for(const MassiveParticle& planet: planets){
+        potentialEnergy += planet.calculatePotentialEnergy();
+    }
+    return potentialEnergy;
+}
+
 double Simulator::calculateTotalEnergy() const
 {
     return calculateKineticEnergy()+ calculatePotentialEnergy();
+}
+
+double Simulator::calculateTotalEnergy_openMP() const
+{
+    return calculateKineticEnergy_openMP()+ calculatePotentialEnergy_openMP();
 }
 
 

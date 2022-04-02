@@ -14,6 +14,7 @@ public:
     void addAttractor(const MassiveParticle& attractor);
     void removeAttractor(const MassiveParticle& attractor);
     void calculateAcceleration();
+
     void integrateTimestep(double timestep);
 
     // calculate energy

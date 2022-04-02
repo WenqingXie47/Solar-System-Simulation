@@ -40,6 +40,7 @@ void MassiveParticle::removeAttractor(const MassiveParticle& attractor)
     attractors.erase(&attractor);
 }
 
+
 void MassiveParticle::calculateAcceleration()
 {
     // clear value from the last step
@@ -48,6 +49,8 @@ void MassiveParticle::calculateAcceleration()
         acceleration += calculateAcceleration(*attractor);
     }
 }
+
+
 
 Eigen::Vector3d MassiveParticle::calculateAcceleration(const MassiveParticle& attractor)
 {
@@ -84,6 +87,8 @@ double MassiveParticle::calculatePotentialEnergy() const
     }
     return potentialEnergy;
 }
+
+
 
 double MassiveParticle::calculateTotalEnergy() const
 {
