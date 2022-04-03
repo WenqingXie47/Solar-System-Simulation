@@ -11,7 +11,8 @@ StableConditionGenerator::StableConditionGenerator
         distribution_r{r_min,r_max}, 
         distribution_theta{0, 2*M_PI},
         distribution_mu{mu_min,mu_max},
-        generator(std::chrono::system_clock::now().time_since_epoch().count())
+        generator{}
+        //generator(std::chrono::system_clock::now().time_since_epoch().count())
 
 {}
 

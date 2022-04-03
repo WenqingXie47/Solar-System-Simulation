@@ -44,8 +44,8 @@ int main()
         auto wall_clock_duration = std::chrono::duration<double, std::milli>(t_end-t_start).count();
         auto cpu_duration = 1000.0 * (c_end - c_start) / CLOCKS_PER_SEC;
 
-        std::cout << "Timestep sizes: " << timestep << "\t"
-                << "Total simulation time:" << simulationTime << "\n"
+        std::cout << "Timestep size: " << timestep << "\t"
+                << "Total simulation time: " << simulationTime << "\n"
                 << "Begin:\t" 
                 << "Kinetic energy: " << kineticEnergy_begin << "\t"
                 << "Potential energy: " << potentialEnergy_begin << "\t"

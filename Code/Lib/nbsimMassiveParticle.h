@@ -14,7 +14,6 @@ public:
     void addAttractor(const MassiveParticle& attractor);
     void removeAttractor(const MassiveParticle& attractor);
     void calculateAcceleration();
-
     void integrateTimestep(double timestep);
 
     // calculate energy
@@ -28,6 +27,7 @@ private:
     Eigen::Vector3d acceleration;
     std::set<const MassiveParticle*>  attractors;
 
+    // private functions
     Eigen::Vector3d calculateAcceleration(const MassiveParticle& attractor);
 };
 

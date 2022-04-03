@@ -37,6 +37,7 @@ public:
     void printPlanets() const;
     void printEnergy() const;
     void printStatus() const;
+    
 private:
     std::vector<MassiveParticle> planets;
     double timestep;

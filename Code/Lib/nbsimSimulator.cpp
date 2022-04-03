@@ -61,6 +61,8 @@ void Simulator::takeStep_openMP()
 {
     #pragma omp parallel for
     for(MassiveParticle& planet : planets){
+        // In principle, the calculateAcceleration() can also be parallelised.
+        // However, we don't parallelise this inner loop. 
         planet.calculateAcceleration();
     }
     #pragma omp barrier
@@ -69,7 +71,6 @@ void Simulator::takeStep_openMP()
         planet.integrateTimestep(timestep);
     }
 }
-
 
 void Simulator::simulate(int nSteps)
 {
@@ -119,6 +120,8 @@ double Simulator::calculatePotentialEnergy_openMP() const
     double potentialEnergy = 0;
     #pragma omp parallel for reduction(+: potentialEnergy)
     for(const MassiveParticle& planet: planets){
+        // In principle, calculatePotentialEnergy() can also be parallelised.
+        // However, we only parallellise the outer loop, and this should be enough.
         potentialEnergy += planet.calculatePotentialEnergy();
     }
     return potentialEnergy;
@@ -133,7 +136,6 @@ double Simulator::calculateTotalEnergy_openMP() const
 {
     return calculateKineticEnergy_openMP()+ calculatePotentialEnergy_openMP();
 }
-
 
 void Simulator::printPlanets() const
 {
